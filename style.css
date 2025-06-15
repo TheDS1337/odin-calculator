@@ -6,6 +6,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
     #calculator {
@@ -28,7 +29,6 @@ body {
             border: 1px solid #545245;
             border-radius: 3px;
             font-size: 10px;
-            text-align: center;
             vertical-align: middle;
             line-height: 25px;
             caret-color: transparent;
@@ -45,29 +45,27 @@ body {
 
             #numbers {
                 display: flex;
-                flex-direction: column;
+                flex-wrap: wrap;
                 justify-content: center;
+                align-items: center;
                 gap: 3px;
             }
 
-                .numbers-trium {
-                    display: flex;
-                    justify-content: center;
-                    gap: 3px;
+                .number {
+                    width: 22px;
+                    color: #FE3B15BF;
+                    background-color: #9DA1AABF;
+                    border: 1px solid #545245BF;
+                    border-radius: 10px;
+                    caret-color: transparent;
+                    transition-duration: 0.125s;
                 }
 
-                    .number {
-                        color: #FE3B15;
-                        background-color: #9DA1AABF;
-                        border: 1px solid #545245BF;
-                        border-radius: 10px;
-                        caret-color: transparent;
-                        transition-duration: 0.5s;
-                    }
-
-                    .number:hover {
-                        background-color: #9DA1AA;
-                    }
+                .number:hover {
+                    font-weight: bolder;
+                    color: #FE3B15;
+                    background-color: #9DA1AA;
+                }
 
             #operations {
                 display: flex;
@@ -77,14 +75,16 @@ body {
             }
                 .operation {
                     width: 27.5px;
-                    color: #FE3B15;
+                    color: #FE3B15BF;
                     background-color: #B7B6ACBF;
                     border: 1px solid #54524580;
                     border-radius: 7px;
                     caret-color: transparent;
-                    transition-duration: 0.5s;
+                    transition-duration: 0.125s;
                 }
 
                 .operation:hover {
+                    font-weight: bolder;
+                    color: #FE3B15;
                     background-color: #B7B6AC;
                 }
