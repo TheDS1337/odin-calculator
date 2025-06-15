@@ -7,20 +7,16 @@ const operate = function (op, a, b)
 {
     switch( op ) {
         case '+':
-            add(a, b);
-            break;
+            return add(a, b);
 
         case '-':
-            subtract(a, b);
-            break;
+            return subtract(a, b);
 
         case 'x':
-            multiply(a, b);
-            break;
+            return multiply(a, b);
 
         case '/':
-            divide(a, b);
-            break;
+            return divide(a, b);
     }
 }
 
@@ -50,29 +46,43 @@ const display = document.querySelector("#display");
 const numbers = document.querySelectorAll(".number");
 const operations = document.querySelectorAll(".operation");
 
+let lastPressedButton = '';
+
 for( const number of numbers ) {
     number.addEventListener("click", (event) => {
-        const button = event.target.id;
+        let button = event.target.id;
 
-        button === 'dot' ? '.' : button;
-        button === 'equal' ? '=' : button;
-
+        if( button === 'dot' )
+            button = '.';
+        else if( button === 'equal' )
+            button = '=';
+        
         if( input.op === '' ) {
-            if( button !== '=' ) {
+            if( button === '=' ) {
+                input.a = parseFloat(input.a).toString();
+                input.b = '0';
+
+                display.textContent = '=' + input.a;
+            } else {
                 if( button !== '.' && input.a === '0' ) 
                     input.a = button;
                 else 
                     input.a += button;
-            }
 
-            display.textContent = input.a;
+                display.textContent = input.a;
+            }
         } else {
             if( button === '=' ) {
-                if( input.op === '/' && parseFloat(input.a) === 0.0 )
-                    display.textContent = 'UNDEFINED';
+                if( lastPressedButton === input.op )
+                    input.b = input.a;
+
+                if( input.op === '/' && parseFloat(input.b) === 0.0 )
+                    display.textContent = 'NaN';
                 else {
-                    const aToFloat = parseFloat(input.a);
-                    display.textContent += operate(input.op, aToFloat, aToFloat);
+                    input.a = operate(input.op, parseFloat(input.a), parseFloat(input.b)).toString();
+                    input.b = '0';
+
+                    display.textContent = '=' + input.a;
                 }
             } else {
                 if( button !== '.' && input.b === '0' ) 
@@ -83,12 +93,14 @@ for( const number of numbers ) {
                 display.textContent += input.b;
             }
         }
+
+        lastPressedButton = button;
     });
 }
 
 for( const operator of operations ) {
     operator.addEventListener("click", (event) => {
-        input.op = event.target.id;
+        lastPressedButton = input.op = event.target.id;
         display.innerHTML += operationEntity(input.op);
     });
 }
