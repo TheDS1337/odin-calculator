@@ -1,7 +1,7 @@
 body {
     padding: 100px;
     color: #FE3B15;
-    background-color: #B7B6AC;
+    background-color: #545245;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,18 +12,26 @@ body {
         height: 140px;
         width: 115px;        
         background-color: #3C3C4C;
+        border: none;
+        border-radius: 5px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         gap: 5px;
     }
 
-        #value {
+        #display {
             height: 25px;
             margin: 10px 10px 0 10px;
+            padding: 0 10px;
             background-color: #B7B6AC;
-            border: 1px solid black;
+            border: 1px solid #545245;
             border-radius: 3px;
+            font-size: 10px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 25px;
+            caret-color: transparent;
         }
 
         #buttons {
@@ -50,9 +58,15 @@ body {
 
                     .number {
                         color: #FE3B15;
-                        background-color: #9DA1AA;
-                        border: 1px solid black;
+                        background-color: #9DA1AABF;
+                        border: 1px solid #545245BF;
                         border-radius: 10px;
+                        caret-color: transparent;
+                        transition-duration: 0.5s;
+                    }
+
+                    .number:hover {
+                        background-color: #9DA1AA;
                     }
 
             #operations {
@@ -64,7 +78,13 @@ body {
                 .operation {
                     width: 27.5px;
                     color: #FE3B15;
-                    background-color: #9DA1AA;
-                    border: 1px solid black;
+                    background-color: #B7B6ACBF;
+                    border: 1px solid #54524580;
                     border-radius: 7px;
+                    caret-color: transparent;
+                    transition-duration: 0.5s;
+                }
+
+                .operation:hover {
+                    background-color: #B7B6AC;
                 }

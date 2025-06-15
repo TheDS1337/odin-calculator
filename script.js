@@ -23,3 +23,23 @@ const operate = function (op, a, b)
             break;
     }
 }
+
+const input = {
+    a: '',
+    b: ''
+};
+
+const display = document.querySelector("#display");
+const numbers = document.querySelectorAll(".number");
+const operations = document.querySelectorAll(".operation");
+
+for( const number of numbers ) {
+    number.addEventListener("click", (event) => {
+        display.textContent = event.target.id;
+    });
+}
+
+for( const operator of operations ) {
+    operator.addEventListener("click", () => {
+    });
+}
