@@ -59,9 +59,7 @@ for( const number of numbers ) {
         
         if( input.op === '' ) {
             if( button === '=' ) {
-                input.a = parseFloat(input.a).toString();
-                input.b = '0';
-
+                input.op = '';
                 display.textContent = '=' + input.a;
             } else {
                 if( button !== '.' && input.a === '0' ) 
@@ -81,6 +79,7 @@ for( const number of numbers ) {
                 else {
                     input.a = operate(input.op, parseFloat(input.a), parseFloat(input.b)).toString();
                     input.b = '0';
+                    input.op = '';
 
                     display.textContent = '=' + input.a;
                 }
@@ -94,6 +93,10 @@ for( const number of numbers ) {
             }
         }
 
+        // Let's not display more than we can
+        if( display.textContent.length > 16 )
+            display.textContent = display.textContent.slice(0, 16);
+
         lastPressedButton = button;
     });
 }
@@ -102,5 +105,9 @@ for( const operator of operations ) {
     operator.addEventListener("click", (event) => {
         lastPressedButton = input.op = event.target.id;
         display.innerHTML += operationEntity(input.op);
+
+        // Let's not display more than we can
+        if( display.textContent.length > 16 )
+            display.textContent = display.textContent.slice(0, 16);
     });
 }
